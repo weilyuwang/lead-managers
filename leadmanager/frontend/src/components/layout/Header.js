@@ -3,9 +3,9 @@ import React, { Component } from "react";
 export class Header extends Component {
   render() {
     return (
-      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-light bg-light">
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarTogglerDemo01"
@@ -13,13 +13,13 @@ export class Header extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="#">
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a className="navbar-brand" href="#">
             Lead Manager
           </a>
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
         </div>
       </nav>
     );
