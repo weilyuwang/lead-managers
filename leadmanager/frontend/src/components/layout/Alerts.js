@@ -15,7 +15,7 @@ export class Alerts extends Component {
     if (error !== prevProps.error) {
       if (error.msg) {
         for (const field of Object.keys(error.msg)) {
-          alert.error(`${field}: ${error.msg[field].join()}`);
+          alert.error(`${field}: ${error.msg[field]}`);
         }
       }
     }
