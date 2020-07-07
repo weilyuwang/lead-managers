@@ -20,7 +20,7 @@ import store from "../store";
 // Alert Options
 const alertOptions = {
   timeout: 3000,
-  position: "top right",
+  position: "top center",
   transition: transitions.SCALE,
 };
 
