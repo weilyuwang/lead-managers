@@ -14,7 +14,7 @@ import Register from "./accounts/Register";
 import { Provider } from "react-redux";
 import { transitions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-
+import PrivateRoute from "./common/PrivateRoute";
 import store from "../store";
 
 // Alert Options
@@ -35,7 +35,7 @@ class App extends Component {
               <Alerts />
               <div className="container">
                 <Switch>
-                  <Route exact path="/" component={Dashboard} />
+                  <PrivateRoute exact path="/" component={Dashboard} />
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />
                 </Switch>
