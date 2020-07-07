@@ -22,7 +22,6 @@ import { loadUser } from "../actions/auth";
 const alertOptions = {
   timeout: 3000,
   position: "top center",
-  transition: transitions.SCALE,
 };
 
 class App extends Component {

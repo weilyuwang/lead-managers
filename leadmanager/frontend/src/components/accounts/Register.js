@@ -45,7 +45,7 @@ export class Register extends Component {
             </div>
             <div className="form-group">
               <label>Password</label>
-              <textarea
+              <input
                 className="form-control"
                 type="password"
                 name="password"
@@ -55,7 +55,7 @@ export class Register extends Component {
             </div>
             <div className="form-group">
               <label>Confirm Password</label>
-              <textarea
+              <input
                 className="form-control"
                 type="password"
                 name="password2"
