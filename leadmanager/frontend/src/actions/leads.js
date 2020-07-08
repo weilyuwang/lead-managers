@@ -1,16 +1,17 @@
 import axios from "axios";
 import { GET_LEADS, DELETE_LEAD, ADD_LEAD, GET_ERRORS } from "./types";
 import { createMessage, returnErrors } from "./messages";
+import { tokenConfig } from "./auth";
 
 // Thunk is a function which optionaly takes some parameters
 // and returns another function
 // it takes dispatch and getState functions
 // and both of these are supplied by Redux Thunk middleware.
 
-// GET LEADS
-export const getLeads = () => (dispatch) => {
+// GET LEADS - A protected route, need to pass the token in
+export const getLeads = () => (dispatch, getState) => {
   axios
-    .get("/api/leads/")
+    .get("/api/leads/", tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_LEADS,
@@ -23,9 +24,9 @@ export const getLeads = () => (dispatch) => {
 };
 
 // DELETE LEAD
-export const deleteLead = (id) => (dispatch) => {
+export const deleteLead = (id) => (dispatch, getState) => {
   axios
-    .delete(`/api/leads/${id}/`)
+    .delete(`/api/leads/${id}/`, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ deleteLead: "Lead Deleted" }));
       dispatch({
@@ -39,9 +40,9 @@ export const deleteLead = (id) => (dispatch) => {
 };
 
 // ADD LEAD
-export const addLead = (lead) => (dispatch) => {
+export const addLead = (lead) => (dispatch, getState) => {
   axios
-    .post("/api/leads/", lead)
+    .post("/api/leads/", lead, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ addLead: "Lead Added" }));
       dispatch({
