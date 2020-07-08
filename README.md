@@ -9,5 +9,5 @@ A sample full stack web app - with React & Redux integrated into Django
   - without watch mode: `npm run build`
 
 2. Start Django backend and serve up statically-compiled React frontend:
-  - cd leadmanager
-  - python3 manage.py runserver
+  - `cd leadmanager`
+  - `python3 manage.py runserver`
