@@ -7,7 +7,29 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
 } from "./types";
+
+// Setup config with token - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().authReducer.token;
+
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  // If token, add to header
+  if (token) {
+    config.headers["Authorization"] = `Token ${token}`;
+  }
+
+  return config;
+};
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
@@ -17,10 +39,17 @@ export const loadUser = () => (dispatch, getState) => {
   axios
     .get("/api/auth/user", tokenConfig(getState))
     .then((res) => {
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data,
-      });
+      // console.log("USER_LOADED:", res.data);
+      if (res.data.id) {
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        });
+      } else {
+        dispatch({
+          type: AUTH_ERROR,
+        });
+      }
     })
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -72,11 +101,8 @@ export const logout = () => (dispatch, getState) => {
     });
 };
 
-// Setup config with token - helper function
-export const tokenConfig = (getState) => {
-  // Get token from state
-  const token = getState().authReducer.token;
-
+// REGISTER USER
+export const register = ({ username, password, email }) => (dispatch) => {
   // Headers
   const config = {
     headers: {
@@ -84,10 +110,21 @@ export const tokenConfig = (getState) => {
     },
   };
 
-  // If token, add to header
-  if (token) {
-    config.headers["Authorization"] = `Token ${token}`;
-  }
+  // Request Body
+  const body = JSON.stringify({ username, password, email });
 
-  return config;
+  axios
+    .post("/api/auth/register", body, config)
+    .then((res) => {
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: REGISTER_FAIL,
+      });
+    });
 };
