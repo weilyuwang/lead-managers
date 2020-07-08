@@ -1,6 +1,6 @@
-# Django REST framework with React
+# Django REST framework integrated with React
 
-A sample full stack web app - with React & Redux integrated into Django
+A sample full stack web app - with React frontend statically compiled and integrated into Django
 
 # Local Dev:
 
