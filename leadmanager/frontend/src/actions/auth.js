@@ -102,7 +102,7 @@ export const logout = () => (dispatch, getState) => {
 };
 
 // REGISTER USER
-export const register = ({ username, password, email }) => (dispatch) => {
+export const register = ({ username, email, password }) => (dispatch) => {
   // Headers
   const config = {
     headers: {
